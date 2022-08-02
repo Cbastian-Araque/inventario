@@ -10,7 +10,7 @@
 </head>
 
 <body>
-
+    <?php $url = 'http://' . $_SERVER['SERVER_NAME'] . '/bicicleteria' ?>
     <nav class="navbar navbar-expand navbar-dark bg-dark">
         <ul class="nav navbar-nav">
             <li class="nav-item">
@@ -24,6 +24,9 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="nosotros.php">Nosotros</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo $url; ?>">Sitio web</a>
             </li>
         </ul>
     </nav>
