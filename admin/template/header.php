@@ -15,9 +15,9 @@
     <nav class="navbar navbar-expand navbar-light bg-light">
         <div class="nav navbar-nav">
             <a class="nav-item nav-link active" href="#">Gestionar Bodega<span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="#">Inicio</a>
-            <a class="nav-item nav-link" href="#">Administrar productos</a>
-            <a class="nav-item nav-link" href="#">Cerrar sesión</a>
+            <a class="nav-item nav-link" href="<?php echo $url . '/admin/inicio.php/'  ?>">Inicio</a>
+            <a class="nav-item nav-link" href="<?php echo $url . '/admin/seccion/productos.php/'; ?>">Administrar productos</a>
+            <a class="nav-item nav-link" href="<?php echo $url . '/admin/seccion/cerrar.php/'; ?>">Cerrar sesión</a>
             <a class="nav-item nav-link" href="<?php echo $url; ?>">Ver sitio web</a>
         </div>
     </nav>
