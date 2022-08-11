@@ -8,8 +8,19 @@ $proveedor = (isset($_POST['txtProveedor'])) ? $_POST['txtProveedor'] : "";
 $stock = (isset($_POST['numStock'])) ? $_POST['numStock'] : "";
 $accion = (isset($_POST['accion'])) ? $_POST['accion'] : "";
 
-echo $image . "<br>" . $Id . "<br>" . $nombre . "<br>" . $proveedor . "<br>" . $stock . "<br>" . $accion
 
+switch($accion){
+    case "Agregar": 
+        echo "Botón agregar";
+        break;
+    case "Modificar": 
+        echo "Botón Modificar";
+        break;
+    case "Cancelar": 
+        echo "Botón Cancelar";
+        break;
+        // quedé en 1:34:02
+}
 ?>
 
 <div class="col-md-4">
