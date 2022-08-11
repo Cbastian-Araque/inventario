@@ -8,8 +8,23 @@ $proveedor = (isset($_POST['txtProveedor'])) ? $_POST['txtProveedor'] : "";
 $stock = (isset($_POST['numStock'])) ? $_POST['numStock'] : "";
 $accion = (isset($_POST['accion'])) ? $_POST['accion'] : "";
 
-echo $image . "<br>" . $Id . "<br>" . $nombre . "<br>" . $proveedor . "<br>" . $stock . "<br>" . $accion
 
+
+switch($accion){
+    case 'Agregar':
+
+        // INSERT INTO `productos` (`imagen`, `id`, `nombre`, `proveedor`, `stock`) VALUES ('foto_producto.jpg', NULL, 'Marco bicicleta 27\"', 'Tour Colombia', '50');
+        echo "presionado el botón agregar";
+        break;
+    
+    case 'Modificar':
+        echo "presionado el botón modificar";
+        break;
+    
+    case 'Cancelar':
+        echo "presionado el botón cancelar";
+        break;
+}
 ?>
 
 <div class="col-md-4">
