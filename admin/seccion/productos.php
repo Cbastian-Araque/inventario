@@ -9,6 +9,19 @@ $stock = (isset($_POST['numStock'])) ? $_POST['numStock'] : "";
 $accion = (isset($_POST['accion'])) ? $_POST['accion'] : "";
 
 
+$host="localhost";
+$bd="inventario";
+$user="root";
+$password="qwerty";
+
+try {
+    $conexion = new PDO("mysql:host=$host;dbname=$bd",$user,$password);
+    if($conexion){
+        echo "Conexión exitosa a la base de datos";
+    }
+} catch (Exception $ex) {
+    echo $ex->getMessage();
+}
 
 switch($accion){
     case 'Agregar':
