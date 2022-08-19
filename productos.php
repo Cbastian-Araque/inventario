@@ -1,51 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Productos - Millan</title>
+<?php include("template/header.php"); ?>
 
-     <!-- icono para la pagina) -->
-     <link rel="shortcut icon" href="media\iconobicicleta.ico" type="icono">
-    
+<div class="col-md-3">
+    <div class="card">
+        <img class="card-img-top" src="./assets/img/producto.png" alt="">
+        <div class="card-body">
+            <h4 class="card-title">Velocímetro digital</h4>
+            <p>Cantidad: 6</p>
+            <a class="btn btn-outline-primary" href="#" role="button">Ver producto</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-3">
+    <div class="card">
+        <img class="card-img-top" src="./assets/img/producto.png" alt="">
+        <div class="card-body">
+            <h4 class="card-title">Velocímetro digital</h4>
+            <p>Cantidad: 6</p>
+            <a class="btn btn-outline-primary" href="#" role="button">Ver producto</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-3">
+    <div class="card">
+        <img class="card-img-top" src="./assets/img/producto.png" alt="">
+        <div class="card-body">
+            <h4 class="card-title">Velocímetro digital</h4>
+            <p>Cantidad: 6</p>
+            <a class="btn btn-outline-primary" href="#" role="button">Ver producto</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-3">
+    <div class="card">
+        <img class="card-img-top" src="./assets/img/producto.png" alt="">
+        <div class="card-body">
+            <h4 class="card-title">Velocímetro digital</h4>
+            <p>Cantidad: 6</p>
+            <a class="btn btn-outline-primary" href="#" role="button">Ver producto</a>
+        </div>
+    </div>
+</div>
 
-     <!-- Hoja de estilos (aplicando Preprocesador Sass) -->
-         <link rel="stylesheet" href="estilos/estilos.css">
-     
-         <!-- importación de fuentes de google -->
-         <link rel="preconnect" href="https://fonts.googleapis.com">
-         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-         <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;600&display=swap" rel="stylesheet">
-     </head>
-     <body>
-         <!-- encabezado -->
-         <header class="head">
-             <div class="head--logo">
-                 <img src="media/logo-millan.jpeg" alt="Logo Bicicletería" width="100">
-             </div>
-     
-             <!-- Menú de navegación -->
-             <nav class="head--menu">
-                 <h1 class="head--titulo">Bicicletas Millan</h1>
-                 <ul class="head--menu--items">
-                 <li><a href="index.php">Inicio</a></li>
-                <li><a href="productos.php">Productos</a></li>
-                <li><a href="nosotros.php">Nosotros</a></li>
-                <li><a href="paginaweb.php">Pagina web</a></li>
-                     
-                 </ul>
-             </nav>
-         </header>
 
-         <!-- caalogo de los productos -->
-    <main class="principal">
-    <h3 class="nosotros">Nuestro catalogo</h3>
-        <img src="media\producto.png" alt="catalogo de bicicletas" width="100">
-             </div>
-     
-         
-     
-
-</body>
-</html>
+<?php include("template/footer.php"); ?>
