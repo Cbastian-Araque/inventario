@@ -1,0 +1,87 @@
+@import "colores";
+@import "fonts";
+
+// configuración del entorno para hacer mejor uso de los bloques (cajas)
+*, ::after, ::before{
+    box-sizing: border-box;
+    font-family: $principal;
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    margin: auto;
+    background-image: url(../media/bodyIMG.jpeg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 190px;
+}
+
+// estilos para el encabezado
+.head{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    background-color: $color_principal;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 160px;
+}
+
+// logo
+.head--logo img{
+    border-radius: 50%;
+    border: 2px solid $blanco;
+}
+
+//  menu & titulo
+.head--menu{
+    color: $negro;
+    .head--titulo{
+        font-size: 3rem;
+    }
+}
+
+.head--menu--items{
+    display: flex;
+    li{
+        list-style: none;
+        margin-top: 15px;
+        a{
+            color: $negro;
+            border-bottom: 1px solid $negro;
+            text-decoration: none;
+            padding: 15px 10px;
+            &:hover{
+                background-color: $color_link;
+                color: $blanco;
+            }
+        }
+    }
+}
+
+// Contenido Principal
+main.principal{
+    width: 80%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 25px 0;
+    background-color: rgba(255, 255, 255, 0.637);
+    color: $negro;
+    .nosotros{
+        font-size: 2rem;
+        text-align: center;
+        margin-bottom: 25px;
+    }
+    .nosotros--texto{
+        width: 85%;
+        margin: auto;
+    }
+}
+
+
+    

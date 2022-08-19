@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Productos - Millan</title>
+    <title>pagina web - Millan</title>
 
+   
      <!-- icono para la pagina) -->
-     <link rel="shortcut icon" href="media\iconobicicleta.ico" type="icono">
+     <link rel="shortcut icon" href="Pagina web\media\iconobicicleta.ico" type="icono">
     
 
      <!-- Hoja de estilos (aplicando Preprocesador Sass) -->
@@ -36,14 +37,11 @@
                      
                  </ul>
              </nav>
+             <img src="Pagina web\media\producto.png" alt="">
          </header>
-
-         <!-- caalogo de los productos -->
-    <main class="principal">
-    <h3 class="nosotros">Nuestro catalogo</h3>
-        <img src="media\producto.png" alt="catalogo de bicicletas" width="100">
-             </div>
+         
      
+        
          
      
 
