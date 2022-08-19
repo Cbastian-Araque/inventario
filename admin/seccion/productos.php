@@ -20,8 +20,6 @@ switch($accion){
         $consultaSQL->bindParam(':proveedor',$proveedor);
         $consultaSQL->bindParam(':stock',$stock);
         $consultaSQL->execute();
-
-        echo "presionado el botón agregar";
         break;
     
     case 'Modificar':
@@ -31,7 +29,20 @@ switch($accion){
     case 'Cancelar':
         echo "presionado el botón cancelar";
         break;
+    case 'Actualizar':
+        // echo "presionado el botón Actualizar";
+        break;
+    case 'Borrar':
+        $consultaSQL = $conexion->prepare("DELETE  FROM productos WHERE id=:id");
+        $consultaSQL->bindParam(':id',$Id);
+        $consultaSQL->execute();
+        // echo "presionado el botón Borrar";
+        break;
 }
+
+$consultaSQL = $conexion->prepare("SELECT * FROM productos");
+$consultaSQL->execute();
+$listaProductos = $consultaSQL->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <div class="col-md-4">
@@ -87,16 +98,24 @@ switch($accion){
             </tr>
         </thead>
         <tbody>
+            <?php foreach($listaProductos as $producto) : ?>
             <tr>
                 <td style="width: 15%;">
-                    <img src="https://i.linio.com/p/558a42c6346dc388aadc965c06a72dee-product.jpg" class="img_product" style="width: 100%">
+                    <img src="<?php echo $producto['imagen'] ?>" class="img_product" style="width: 100%">
                 </td>
-                <td style="width: 10%;">1</td>
-                <td style="width: 15%;">Casco sport</td>
-                <td style="width: 20%;">Shimano group</td>
-                <td style="width: 15%;">4</td>
-                <td style="width: 25%;">Seleccionar | Borrar</td>
+                <td style="width: 10%;"><?php echo $producto['id'] ?></td>
+                <td style="width: 15%;"><?php echo $producto['nombre'] ?></td>
+                <td style="width: 20%;"><?php echo $producto['proveedor'] ?></td>
+                <td style="width: 15%;"><?php echo $producto['stock'] ?></td>
+                <td style="width: 25%;">
+                    <form method="post">
+                        <input type="hidden" name="txtId" id="txtId" value="<?php echo $producto['id'] ?>"/>
+                        <input type="submit" name="accion" value="Actualizar" class="btn btn-primary"/>
+                        <input type="submit" name="accion" value="Borrar" class="btn btn-danger"/>
+                    </form> <!-- seleccionar registros -->
+                </td>
             </tr>
+            <?php endforeach; ?>
         </tbody>
     </table>
 </div>
