@@ -115,14 +115,10 @@ $listaProductos = $consultaSQL->fetchAll(PDO::FETCH_ASSOC);
 
             Información de producto
         </div>
-        
         <div class="card-body">
-            
-        
             <form method="post" enctype="multipart/form-data">
-                <div class="form-group">
-                    
-                    <label for="imgProd">Foto: </label>
+                <div class="form-group">    
+                 <label for="imgProd">Foto: </label>
                     <?php echo $image ?>
                     <input type="file" name="imgProd" class="form-control" id="imgProd">
                 </div>
