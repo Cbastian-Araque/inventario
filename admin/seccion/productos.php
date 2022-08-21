@@ -23,7 +23,20 @@ switch($accion){
         break;
     
     case 'Modificar':
-        echo "presionado el botón modificar";
+        $consultaSQL = $conexion->prepare("UPDATE productos SET nombre=:nombre, proveedor=:proveedor, stock=:stock WHERE id=:id");
+        $consultaSQL->bindParam(':id',$Id);
+        $consultaSQL->bindParam(':nombre',$nombre);
+        $consultaSQL->bindParam(':proveedor',$proveedor);
+        $consultaSQL->bindParam(':stock',$stock);
+        $consultaSQL->execute();
+
+        if($image != ''){
+            $consultaSQL = $conexion->prepare("UPDATE productos SET imagen=:imagen WHERE id=:id");
+            $consultaSQL->bindParam(':imagen',$image);
+            $consultaSQL->bindParam(':id',$Id);
+            $consultaSQL->execute();
+        }
+
         break;
     
     case 'Cancelar':
@@ -31,6 +44,15 @@ switch($accion){
         break;
     case 'Actualizar':
         // echo "presionado el botón Actualizar";
+        $consultaSQL = $conexion->prepare("SELECT * FROM productos WHERE id=:id");
+        $consultaSQL->bindParam(':id',$Id);
+        $consultaSQL->execute();
+        $producto = $consultaSQL->fetch(PDO::FETCH_LAZY);
+
+        $nombre=$producto['nombre'];
+        $image=$producto['imagen'];
+        $proveedor=$producto['proveedor'];
+        $stock=$producto['stock'];
         break;
     case 'Borrar':
         $consultaSQL = $conexion->prepare("DELETE  FROM productos WHERE id=:id");
@@ -54,23 +76,24 @@ $listaProductos = $consultaSQL->fetchAll(PDO::FETCH_ASSOC);
             <form method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="imgProd">Foto: </label>
+                    <?php echo $image ?>
                     <input type="file" name="imgProd" class="form-control" id="imgProd">
                 </div>
                 <div class="form-group">
                     <label for="txtId">Id Producto</label>
-                    <input type="number" name="txtId" class="form-control" id="txtId" placeholder="Id del producto">
+                    <input type="number" name="txtId" class="form-control" value="<?php echo $Id ?>" id="txtId" placeholder="Id del producto">
                 </div>
                 <div class="form-group">
                     <label for="txtNombre">Nombre: </label>
-                    <input type="text" name="txtNombre" class="form-control" id="txtNombre" placeholder="Nombre del producto">
+                    <input type="text" name="txtNombre" class="form-control" value="<?php echo $nombre ?>" id="txtNombre" placeholder="Nombre del producto">
                 </div>
                 <div class="form-group">
                     <label for="txtProveedor">Proveedor: </label>
-                    <input type="text" name="txtProveedor" class="form-control" id="txtProveedor" placeholder="Nombre del proveedor">
+                    <input type="text" name="txtProveedor" class="form-control" value="<?php echo $proveedor ?>" id="txtProveedor" placeholder="Nombre del proveedor">
                 </div>
                 <div class="form-group">
                     <label for="numStock">Stock </label>
-                    <input type="number" name="numStock" class="form-control" id="numStock" placeholder="Cantidad ingresada">
+                    <input type="number" name="numStock" class="form-control" value="<?php echo $stock ?>" id="numStock" placeholder="Cantidad ingresada">
                 </div>
         
                 <div class="btn-group" role="group" aria-label="">
@@ -101,7 +124,7 @@ $listaProductos = $consultaSQL->fetchAll(PDO::FETCH_ASSOC);
             <?php foreach($listaProductos as $producto) : ?>
             <tr>
                 <td style="width: 15%;">
-                    <img src="<?php echo $producto['imagen'] ?>" class="img_product" style="width: 100%">
+                    <?php echo $producto['imagen'] ?>
                 </td>
                 <td style="width: 10%;"><?php echo $producto['id'] ?></td>
                 <td style="width: 15%;"><?php echo $producto['nombre'] ?></td>
