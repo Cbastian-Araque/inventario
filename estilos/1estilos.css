@@ -41,6 +41,7 @@ body {
 
 .head--menu {
   color: rgb(250, 248, 248);
+  background-color: #110335 !important;
 }
 
 .head--menu .head--titulo {

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bicicletas Millan</title>
     <link rel="shortcut icon" href="media\iconobicicleta.ico" type="icono">
-    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <!-- Hoja de estilos (aplicando Preprocesador Sass) -->
     <link rel="stylesheet" href="estilos\1estilos.css">
     <!-- importación de fuentes de google -->

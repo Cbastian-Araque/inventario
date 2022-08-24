@@ -1,7 +1,7 @@
 <?php include("../template/header.php") ?>
 
 <?php
- /*
+
 
 $image = (isset($_FILES['imgProd']['name'])) ? $_FILES['imgProd']['name'] : "";
 $Id = (isset($_POST['txtId'])) ? $_POST['txtId'] : "";
@@ -17,7 +17,17 @@ switch($accion){
 
         // INSERT INTO `productos` (`imagen`, `id`, `nombre`, `proveedor`, `stock`) VALUES ('foto_producto.jpg', NULL, 'Marco bicicleta 27\"', 'Tour Colombia', '50');
         $consultaSQL = $conexion->prepare("INSERT INTO productos (imagen,nombre,proveedor,stock) VALUES (:imagen,:nombre,:proveedor,:stock)");
-        $consultaSQL->bindParam(':imagen',$image);
+
+        $fecha = new DateTime();
+        $fileName = ($image != '') ? $fecha->getTimestamp().'_'.$_FILES['imgProd']['name'] : 'imagen.jpg';
+
+        $tmpImagen = $_FILES['imgProd']['tmp_name'];
+
+        if($tmpImagen != ''){
+            move_uploaded_file($tmpImagen, '../../media/products/'.$fileName);
+        }
+
+        $consultaSQL->bindParam(':imagen',$fileName);
         $consultaSQL->bindParam(':nombre',$nombre);
         $consultaSQL->bindParam(':proveedor',$proveedor);
         $consultaSQL->bindParam(':stock',$stock);
@@ -33,8 +43,26 @@ switch($accion){
         $consultaSQL->execute();
 
         if($image != ''){
+            $fecha = new DateTime();
+            $fileName = ($image != '') ? $fecha->getTimestamp().'_'.$_FILES['imgProd']['name'] : 'imagen.jpg';
+            $tmpImagen = $_FILES['imgProd']['tmp_name'];
+
+            move_uploaded_file($tmpImagen, '../../media/products/'.$fileName);
+
+            $consultaSQL = $conexion->prepare("SELECT imagen FROM productos WHERE id=:id");
+            $consultaSQL->bindParam(':id',$Id);
+            $consultaSQL->execute();
+            $producto = $consultaSQL->fetch(PDO::FETCH_LAZY);
+    
+            if(isset($producto['imagen']) && ($producto['imagen'] != 'imagen.jpg') ){
+                if(file_exists("../../media/products/" . $producto['imagen'])){
+                    unlink("../../media/products/" . $producto['imagen']);
+    
+                }
+            }
+
             $consultaSQL = $conexion->prepare("UPDATE productos SET imagen=:imagen WHERE id=:id");
-            $consultaSQL->bindParam(':imagen',$image);
+            $consultaSQL->bindParam(':imagen',$$fileName);
             $consultaSQL->bindParam(':id',$Id);
             $consultaSQL->execute();
         }
@@ -57,9 +85,23 @@ switch($accion){
         $stock=$producto['stock'];
         break;
     case 'Borrar':
+
+        $consultaSQL = $conexion->prepare("SELECT imagen FROM productos WHERE id=:id");
+        $consultaSQL->bindParam(':id',$Id);
+        $consultaSQL->execute();
+        $producto = $consultaSQL->fetch(PDO::FETCH_LAZY);
+
+        if(isset($producto['imagen']) && ($producto['imagen'] != 'imagen.jpg') ){
+            if(file_exists("../../media/products/" . $producto['imagen'])){
+                unlink("../../media/products/" . $producto['imagen']);
+
+            }
+        }
+
         $consultaSQL = $conexion->prepare("DELETE  FROM productos WHERE id=:id");
         $consultaSQL->bindParam(':id',$Id);
         $consultaSQL->execute();
+        
         // echo "presionado el botón Borrar";
         break;
 }
@@ -67,7 +109,7 @@ switch($accion){
 $consultaSQL = $conexion->prepare("SELECT * FROM productos");
 $consultaSQL->execute();
 $listaProductos = $consultaSQL->fetchAll(PDO::FETCH_ASSOC);
-*/
+
 ?> 
 
 <!DOCTYPE html>
@@ -117,14 +159,14 @@ $listaProductos = $consultaSQL->fetchAll(PDO::FETCH_ASSOC);
         </div>
         <div class="card-body">
             <form method="post" enctype="multipart/form-data">
-                <div class="form-group">    
-                 <label for="imgProd">Foto: </label>
-                    <?php echo $image ?>
-                    <input type="file" name="imgProd" class="form-control" id="imgProd">
-                </div>
                 <div class="form-group">
                     <label for="txtId">Id Producto</label>
                     <input type="number" name="txtId" class="form-control" value="<?php echo $Id ?>" id="txtId" placeholder="Id del producto">
+                </div>
+                <div class="form-group">
+                    <label for="imgProd">Foto: </label>
+                    <?php echo $image ?>
+                    <input type="file" name="imgProd" class="form-control" id="imgProd">
                 </div>
                 <div class="form-group">
                     <label for="txtNombre">Nombre: </label>
@@ -153,12 +195,12 @@ $listaProductos = $consultaSQL->fetchAll(PDO::FETCH_ASSOC);
 
 </div>
 <div class="col-md-8">
-<img src="admin\assent\cuerpoproducto.jpeg" alt="imagen fondo" width="100">
+<img src="../assent/cuerpoproducto.jpeg" alt="imagen fondo" width="100">
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Foto</th>
                 <th>Id</th>
+                <th>Foto</th>
                 <th>Nombre</th>
                 <th>Proveedor</th>
                 <th>Stock</th>
@@ -168,10 +210,10 @@ $listaProductos = $consultaSQL->fetchAll(PDO::FETCH_ASSOC);
         <tbody>
             <?php foreach($listaProductos as $producto) : ?>
             <tr>
-                <td style="width: 15%;">
-                    <?php echo $producto['imagen'] ?>
-                </td>
                 <td style="width: 10%;"><?php echo $producto['id'] ?></td>
+                <td style="width: 15%;">
+                    <img src="../../media/products/<?php echo $producto['imagen']; ?>" width="50" alt="<?php echo $producto['nombre'] ?>">
+                </td>
                 <td style="width: 15%;"><?php echo $producto['nombre'] ?></td>
                 <td style="width: 20%;"><?php echo $producto['proveedor'] ?></td>
                 <td style="width: 15%;"><?php echo $producto['stock'] ?></td>
