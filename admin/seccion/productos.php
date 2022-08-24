@@ -1,5 +1,7 @@
 <?php include("../template/header.php") ?>
+
 <?php
+ /*
 
 $image = (isset($_FILES['imgProd']['name'])) ? $_FILES['imgProd']['name'] : "";
 $Id = (isset($_POST['txtId'])) ? $_POST['txtId'] : "";
@@ -65,17 +67,58 @@ switch($accion){
 $consultaSQL = $conexion->prepare("SELECT * FROM productos");
 $consultaSQL->execute();
 $listaProductos = $consultaSQL->fetchAll(PDO::FETCH_ASSOC);
-?>
+*/
+?> 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="admin\styles\estiloproductos">
+    <title>Document</title>
+</head>
+<body>
+    
+
 
 <div class="col-md-4">
+
     <div class="card">
         <div class="card-header">
+            <!-- estilos del cuerpo de productos.php   -->
+            <style>
+                body {
+    font-family: 'Dosis', sans-serif;
+    
+  }
+  body {
+    background-color: #20ad9b;
+  width: 100%;
+}
+.card-body {
+    background-color: #0c072c;
+    color: #fff;
+   
+   }
+   .col-md-8 {
+    background-color: #0c072c;
+    color: #fff;
+   
+   }
+   .table {
+    color: #fff;
+    
+}
+ </style>
+
             Información de producto
         </div>
         <div class="card-body">
             <form method="post" enctype="multipart/form-data">
-                <div class="form-group">
-                    <label for="imgProd">Foto: </label>
+                <div class="form-group">    
+                 <label for="imgProd">Foto: </label>
                     <?php echo $image ?>
                     <input type="file" name="imgProd" class="form-control" id="imgProd">
                 </div>
@@ -97,6 +140,7 @@ $listaProductos = $consultaSQL->fetchAll(PDO::FETCH_ASSOC);
                 </div>
         
                 <div class="btn-group" role="group" aria-label="">
+                    
                     <button type="submit" name="accion" value="Agregar" class="btn btn-success">Agregar</button>
                     <button type="submit" name="accion" value="Modificar" class="btn btn-warning">Modificar</button>
                     <button type="submit" name="accion" value="Cancelar" class="btn btn-danger">Cancelar</button>
@@ -109,6 +153,7 @@ $listaProductos = $consultaSQL->fetchAll(PDO::FETCH_ASSOC);
 
 </div>
 <div class="col-md-8">
+<img src="admin\assent\cuerpoproducto.jpeg" alt="imagen fondo" width="100">
     <table class="table table-bordered">
         <thead>
             <tr>
@@ -138,9 +183,15 @@ $listaProductos = $consultaSQL->fetchAll(PDO::FETCH_ASSOC);
                     </form> <!-- seleccionar registros -->
                 </td>
             </tr>
+            
             <?php endforeach; ?>
+
+            
         </tbody>
     </table>
 </div>
 
+
+</body>
+</html>
 <?php include("../template/footer.php") ?>
