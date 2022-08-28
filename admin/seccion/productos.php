@@ -113,37 +113,29 @@ $consultaSQL->execute();
 $listaProductos = $consultaSQL->fetchAll(PDO::FETCH_ASSOC);
 
 ?> 
-
-<div class="col-md-4">
-
-    <div class="card">
-        <div class="card-header">
-            <!-- estilos del cuerpo de productos.php   -->
-            <style>
-                body {
-    font-family: 'Dosis', sans-serif;
-    
-  }
-  body {
-    background-color: #20ad9b;
-  width: 100%;
-}
-.card-body {
+<style>
+    body {
+        font-family: 'Dosis', sans-serif;
+    }
+    body {
+        background-color: #20ad9b;
+        width: 100%;
+    }
+    .card-body {
     background-color: #0c072c;
     color: #fff;
-   
    }
    .col-md-8 {
     background-color: #0c072c;
     color: #fff;
-   
    }
    .table {
     color: #fff;
-    
-}
- </style>
-
+    }
+</style>
+<div class="col-md-4">
+    <div class="card">
+        <div class="card-header">
             Información de producto
         </div>
         <div class="card-body">
@@ -190,7 +182,7 @@ $listaProductos = $consultaSQL->fetchAll(PDO::FETCH_ASSOC);
 
 </div>
 <div class="col-md-8">
-<img src="../assent/cuerpoproducto.jpeg" alt="imagen fondo" width="100">
+<br>
     <table class="table table-bordered">
         <thead>
             <tr>

@@ -34,7 +34,7 @@ if (!isset($_SESSION['usuario'])) {
     <nav class="navbar navbar-expand navbar-light bg-light">
         <header class="head">
             <div class="head--logo">
-                <img src="admin\assent\logo-millan.jpeg" alt="Logo Bicicletería" width="100">
+                
                 <h1 class="head--titulo">Bicicletas Millán</h1>
 
                 <!-- estilo del encabezado -->
@@ -56,7 +56,6 @@ if (!isset($_SESSION['usuario'])) {
 
             </div>
             <div class="nav navbar-nav">
-                <a class="nav-item nav-link active" href="#">Gestionar Bodega<span class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link" href="<?php echo $url . '/admin/inicio.php/'  ?>">Inicio</a>
                 <a class="nav-item nav-link" href="<?php echo $url . '/admin/seccion/productos.php/'; ?>">Administrar productos</a>
                 <a class="nav-item nav-link" href="<?php echo $url . '/admin/seccion/cerrar.php/'; ?>">Cerrar sesión</a>
