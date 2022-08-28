@@ -32,6 +32,8 @@ switch($accion){
         $consultaSQL->bindParam(':proveedor',$proveedor);
         $consultaSQL->bindParam(':stock',$stock);
         $consultaSQL->execute();
+
+        header("Location:productos.php");
         break;
     
     case 'Modificar':
@@ -66,11 +68,11 @@ switch($accion){
             $consultaSQL->bindParam(':id',$Id);
             $consultaSQL->execute();
         }
-
+        header("Location:productos.php");
         break;
     
     case 'Cancelar':
-        echo "presionado el botón cancelar";
+        header("Location:productos.php");
         break;
     case 'Actualizar':
         // echo "presionado el botón Actualizar";
@@ -102,7 +104,7 @@ switch($accion){
         $consultaSQL->bindParam(':id',$Id);
         $consultaSQL->execute();
         
-        // echo "presionado el botón Borrar";
+        header("Location:productos.php");
         break;
 }
 
@@ -111,19 +113,6 @@ $consultaSQL->execute();
 $listaProductos = $consultaSQL->fetchAll(PDO::FETCH_ASSOC);
 
 ?> 
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="admin\styles\estiloproductos">
-    <title>Document</title>
-</head>
-<body>
-    
-
 
 <div class="col-md-4">
 
@@ -161,31 +150,37 @@ $listaProductos = $consultaSQL->fetchAll(PDO::FETCH_ASSOC);
             <form method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="txtId">Id Producto</label>
-                    <input type="number" name="txtId" class="form-control" value="<?php echo $Id ?>" id="txtId" placeholder="Id del producto">
+                    <input type="text" required readonly name="txtId" class="form-control" value="<?php echo $Id ?>" id="txtId" placeholder="Id del producto">
                 </div>
                 <div class="form-group">
                     <label for="imgProd">Foto: </label>
-                    <?php echo $image ?>
+
+                    <br/>
+
+                    <?php if($image != '') : ?>
+                        <img class="img-thumbnail rounded" src="/bicicleteria/media/products/<?php echo $image ?>" width="100" alt="">
+                    <?php endif; ?>
+
                     <input type="file" name="imgProd" class="form-control" id="imgProd">
                 </div>
                 <div class="form-group">
                     <label for="txtNombre">Nombre: </label>
-                    <input type="text" name="txtNombre" class="form-control" value="<?php echo $nombre ?>" id="txtNombre" placeholder="Nombre del producto">
+                    <input type="text" required name="txtNombre" class="form-control" value="<?php echo $nombre ?>" id="txtNombre" placeholder="Nombre del producto">
                 </div>
                 <div class="form-group">
                     <label for="txtProveedor">Proveedor: </label>
-                    <input type="text" name="txtProveedor" class="form-control" value="<?php echo $proveedor ?>" id="txtProveedor" placeholder="Nombre del proveedor">
+                    <input type="text" required name="txtProveedor" class="form-control" value="<?php echo $proveedor ?>" id="txtProveedor" placeholder="Nombre del proveedor">
                 </div>
                 <div class="form-group">
                     <label for="numStock">Stock </label>
-                    <input type="number" name="numStock" class="form-control" value="<?php echo $stock ?>" id="numStock" placeholder="Cantidad ingresada">
+                    <input type="number" required name="numStock" class="form-control" value="<?php echo $stock ?>" id="numStock" placeholder="Cantidad ingresada">
                 </div>
         
                 <div class="btn-group" role="group" aria-label="">
                     
-                    <button type="submit" name="accion" value="Agregar" class="btn btn-success">Agregar</button>
-                    <button type="submit" name="accion" value="Modificar" class="btn btn-warning">Modificar</button>
-                    <button type="submit" name="accion" value="Cancelar" class="btn btn-danger">Cancelar</button>
+                    <button type="submit" name="accion" <?php echo ($accion === "Actualizar") ? "disabled" : "" ?> value="Agregar" class="btn btn-success">Agregar</button>
+                    <button type="submit" name="accion" <?php echo ($accion !== "Actualizar") ? "disabled" : "" ?> value="Modificar" class="btn btn-warning">Modificar</button>
+                    <button type="submit" name="accion" <?php echo ($accion !== "Actualizar") ? "disabled" : "" ?> value="Cancelar" class="btn btn-danger">Cancelar</button>
                 </div>
             </form>
         </div>
@@ -212,7 +207,7 @@ $listaProductos = $consultaSQL->fetchAll(PDO::FETCH_ASSOC);
             <tr>
                 <td style="width: 10%;"><?php echo $producto['id'] ?></td>
                 <td style="width: 15%;">
-                    <img src="../../media/products/<?php echo $producto['imagen']; ?>" width="50" alt="<?php echo $producto['nombre'] ?>">
+                    <img class="img-thumbnail rounded" src="/bicicleteria/media/products/<?php echo $producto['imagen'] ?>" width="100" alt="<?php echo $producto['nombre'] ?>">
                 </td>
                 <td style="width: 15%;"><?php echo $producto['nombre'] ?></td>
                 <td style="width: 20%;"><?php echo $producto['proveedor'] ?></td>
@@ -234,6 +229,4 @@ $listaProductos = $consultaSQL->fetchAll(PDO::FETCH_ASSOC);
 </div>
 
 
-</body>
-</html>
 <?php include("../template/footer.php") ?>
