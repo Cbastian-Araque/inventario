@@ -1,7 +1,17 @@
 <?php
+session_start();
 
 if ($_POST) {
-  header('Location:inicio.php');
+  if(($_POST['usuario'] === 'admin') && ($_POST['password'] === 'admin')){
+    
+    $_SESSION['usuario'] = 'ok';
+    $_SESSION['nombreUsuario'] = 'admin';
+    header('Location:inicio.php');
+
+  } else {
+    $mensaje = "ERROR: Usuario o contraseña incorrectos";
+  }
+
 }
 
 ?>
@@ -25,16 +35,23 @@ if ($_POST) {
 <body>
   <main class="login-design">
     <div class="bicicleta">
-      <img src="assent/logo-millan.jpeg" alt="" />
+      <img src="../media/logo-millan.jpeg" alt="" />
     </div>
     <div class="login">
       <div class="login-data">
-        <img src="assent/iconobicicleta.ico" alt="" />
+        <img src="../media/iconobicicleta.ico" alt="" />
         <h1>Inicio de Sesión</h1>
+
+        <?php if(isset($mensaje)) : ?>
+          <div class="alert alert-danger" role="alert">
+            <?php echo $mensaje; ?>
+          </div>
+        <?php endif; ?>
+
         <form action="index.php" method="post" class="login-form">
           <div class="input-group">
             <label class="input-fill">
-              <input type="usuario" name="usuario" id="usuario" required />
+              <input type="usuario" name="usuario" id="usuario" />
               <span class="input-label">Usuario</span>
               <i class="fas fa-user"></i>
 
@@ -42,7 +59,7 @@ if ($_POST) {
           </div>
           <div class="input-group">
             <label class="input-fill">
-              <input type="password" name="password" id="password" required />
+              <input type="password" name="password" id="password" />
               <span class="input-label">Contraseña</span>
               <i class="fas fa-lock"></i>
             </label>
