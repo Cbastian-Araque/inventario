@@ -13,6 +13,12 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   padding: 190px;
+  position: relative;
+}
+@media screen and (min-width: 320px) and (max-width: 767px){
+  body{
+    padding: 0;
+  }
 }
 
 .head {
@@ -91,4 +97,153 @@ main.principal .nosotros--texto {
   width: 85%;
   margin: auto;
   text-align: center;
+}
+
+@media screen and (max-width: 767px) {
+  .container .row{
+      padding-top: 220px;
+  }
+}
+
+
+.cnt_cards_products{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+@media screen and (min-width: 320px) and (max-width: 767px){
+  .cnt_cards_products{
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+@media screen and (min-width: 1024px) and (max-width: 1279px){
+  .cnt_cards_products{
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.cnt_cards_products .card-product{
+  background-color: #fff;
+  overflow: hidden;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media screen and (max-width: 767px) {
+  .cnt_cards_products .card-product{
+      width: 85%;
+      margin: auto;
+  }
+}
+
+.cnt_cards_products .card-product .card-img-top{
+  width: 80%;
+  height: 43%;
+}
+
+@media screen and (max-width: 767px) {
+  .card-body{
+      margin: auto;
+      width: 90%;
+  }
+}
+
+/* estilos footer frontend */
+#footer_front{
+  background-color: #110335;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  padding: 2rem 0;
+}
+
+#footer_front .cnt_foot_top{
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (max-width: 767px){
+  #footer_front .cnt_foot_top{
+    flex-direction: column;
+    gap: 2rem;
+  }
+}
+
+#footer_front .cnt_logo_empresa{
+  width: 15%;
+}
+@media screen and (max-width: 767px){
+  #footer_front .cnt_logo_empresa{
+    width: 70%;
+    margin: auto;
+  }
+  #footer_front .cnt_logo_empresa img{
+    width: 120px !important;
+  }
+}
+
+#footer_front .cnt_form{
+  width: 70%;
+  margin: auto;
+}
+#footer_front .title_foot{
+  font-size: 24px;
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
+  color: #fff;
+  margin: 0;
+}
+
+#footer_front .cnt_logo_empresa .logo{
+  filter: drop-shadow(0 0 2px #fff);
+  width: 100%;
+}
+
+#footer_front .foot_form{
+  display: flex;
+  row-gap: .8rem;
+  flex-direction: column;
+  width: 80%;
+}
+
+#footer_front .foot_form .label_foot{
+  border: none;
+  border-radius: 4px;
+  padding: .3rem .5rem;
+}
+#footer_front .foot_form .label_foot::placeholder{
+  color: rgb(135, 126, 237);
+  font-weight: 600;
+}
+#footer_front .foot_form input[type="submit"]{
+  background-color: #110335;
+  outline: 1px solid #fff;
+  color: #fff;
+  padding: .5rem 1.5rem;
+  border: none;
+  width: max-content;
+  margin: auto;
+  transition: padding .4s ease-in;
+}
+#footer_front .foot_form input[type="submit"]:hover{
+  background-color: #fff;
+  color: #110335;
+  font-weight: bold;
+  padding: .5rem 2.2rem;
+}
+
+#footer_front .copy{
+  width: 80%;
+  margin: auto;
+  text-align: center;
+}
+
+#footer_front .copy p {
+  color: #fff;
+  font-size: 14px;
+}
+
+body .container {
+  margin-bottom: 5rem;
 }

@@ -9,18 +9,18 @@ $consultaSQL->execute();
 $listaProductos = $consultaSQL->fetchAll(PDO::FETCH_ASSOC);
 ?>
     
-<?php foreach($listaProductos as $producto) : ?>
-<div class="col-md-4">
-    <div class="card">
+<div class="cnt_cards_products">
+    <?php foreach($listaProductos as $producto) : ?>
+    <article class=" card-product">
         <img class="card-img-top" src="/bicicleteria/media/products/<?php echo $producto['imagen']?>" alt="">
         <div class="card-body">
             <h4 class="card-title"><?php echo $producto['nombre'] ?></h4>
             <p>Cantidad: <?php echo $producto['stock'] ?></p>
             <p>Proveedor: <?php echo $producto['proveedor']; ?></p>
         </div>
-    </div>
+    </article>
+    <?php endforeach; ?>
 </div>
-<?php endforeach; ?>
 
 
 <?php include('template/footer.php') ?>

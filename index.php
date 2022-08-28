@@ -10,3 +10,5 @@
 
     </p>
 </main>
+
+<?php include('./template/footer.php') ?>
